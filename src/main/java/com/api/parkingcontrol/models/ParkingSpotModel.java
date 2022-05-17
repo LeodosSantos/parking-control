@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -40,6 +42,10 @@ public class ParkingSpotModel implements Serializable{
 	private String apartment;
 	@Column(nullable = false, length = 30)
 	private String block;
+	
+	@ManyToOne
+    @JoinColumn(name="owner_id")
+	private OwnerModel ownerModel;
 	
 	
 	public UUID getId() {
@@ -101,6 +107,12 @@ public class ParkingSpotModel implements Serializable{
 	}
 	public void setBlock(String block) {
 		this.block = block;
+	}
+	public OwnerModel getOwnerModel() {
+		return ownerModel;
+	}
+	public void setOwnerModel(OwnerModel ownerModel) {
+		this.ownerModel = ownerModel;
 	}
 	
 	
